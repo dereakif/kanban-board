@@ -1,0 +1,55 @@
+@use '../../styles/variables' as v;
+
+.icon {
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  display: grid;
+  place-items: center;
+}
+
+.letter {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 110%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  font-feature-settings: 'liga' off;
+  color: #ffffff;
+}
+
+.small {
+  width: 16px;
+  height: 16px;
+}
+
+.medium {
+  width: 24px;
+  height: 24px;
+}
+
+.large {
+  width: 32px;
+  height: 32px;
+}
+
+.yellow {
+  background: #ffc84a;
+}
+
+.orange {
+  background: #fe6b38;
+}
+
+.grey-light {
+  background: v.$background;
+}
+
+.grey-dark {
+  background: #405175;
+}
+
+blue {
+  background: v.$blue;
+}

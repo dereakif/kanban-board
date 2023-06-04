@@ -1,0 +1,73 @@
+@use '../../styles/variables' as v;
+
+.sidebar {
+  width: 185px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  font-feature-settings: 'liga' off;
+  &__upper {
+    &__logo {
+      padding: 12px 0;
+      margin-left: 14px;
+      padding-right: 18px;
+      border-right: 1px solid v.$background;
+      border-bottom: 1px solid v.$background;
+    }
+    &__menu {
+      li {
+        cursor: pointer;
+        width: 161px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        margin: 12px;
+        color: v.$text-light;
+        img {
+          margin: 8px;
+        }
+      }
+      li.active {
+        background-color: v.$blue;
+        color: white;
+      }
+    }
+  }
+  &__lower {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-bottom: 24px;
+    &__items {
+      li {
+        img {
+          margin-right: 8px;
+        }
+        display: flex;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+      > div {
+        margin: 24px 0;
+      }
+    }
+    hr {
+      margin-right: 12px;
+      border-color: v.$background;
+    }
+    &__user,
+    &__company {
+      color: v.$text-dark;
+      display: flex;
+      align-items: center;
+      margin: 16px 0;
+      img {
+        margin-right: 8px;
+      }
+    }
+  }
+}
