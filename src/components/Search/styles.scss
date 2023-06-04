@@ -1,0 +1,34 @@
+@use '../../styles/variables' as v;
+
+.search {
+  margin-left: 24px;
+  border-radius: 4px;
+  width: 200px;
+  height: 32px;
+  background: v.$background;
+  display: flex;
+  align-items: center;
+  img,
+  input {
+    width: 16px;
+    height: 16px;
+  }
+  img {
+    margin-right: 4px;
+    margin-left: 8px;
+  }
+  input {
+    background: transparent;
+    width: 100%;
+    border: none;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.02em;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: v.$text-lighter;
+    }
+  }
+}

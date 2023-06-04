@@ -1,7 +1,17 @@
 @use '../../styles/variables' as v;
 
 .header {
-  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 56px;
+  padding-right: 24px;
+  &__search {
+    display: flex;
+  }
+  .icon {
+    margin-left: 8px;
+    cursor: pointer;
+  }
 }

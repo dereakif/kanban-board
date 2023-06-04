@@ -4,7 +4,6 @@
   border-radius: 6px;
   width: 24px;
   height: 24px;
-  margin-right: 8px;
   display: grid;
   place-items: center;
 }
@@ -50,6 +49,11 @@
   background: #405175;
 }
 
-blue {
+.blue {
   background: v.$blue;
+}
+
+.border-blue {
+  border: 1px solid v.$blue;
+  background-color: transparent;
 }

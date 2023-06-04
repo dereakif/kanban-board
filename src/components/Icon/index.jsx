@@ -6,9 +6,9 @@ const types = {
   icon: 'icon',
 };
 
-const Icon = ({ text, type, color = '', size = 'small' }) => {
+const Icon = ({ text, type, color = '', size = 'small', border = '' }) => {
   return (
-    <div className={`icon ${color} ${type} ${size}`}>
+    <div className={`icon ${color} ${type} ${size} ${border}`}>
       {type === types.letter ? text[0] : null}
       {type === types.icon ? <img src={require(`../../assets/${text}.svg`)} alt='icon' /> : null}
     </div>
@@ -20,5 +20,6 @@ Icon.propTypes = {
   color: PropTypes.string,
   type: PropTypes.string.isRequired,
   size: PropTypes.string,
+  border: PropTypes.string,
 };
 export default Icon;
