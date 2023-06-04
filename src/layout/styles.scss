@@ -1,0 +1,11 @@
+@use '../styles/variables' as v;
+
+.layout {
+  height: 100vh;
+  display: flex;
+  &__main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}

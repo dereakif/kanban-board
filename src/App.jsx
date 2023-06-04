@@ -1,12 +1,13 @@
-import Hello from 'Components/Hello';
+import Task from './features/Task';
+import Layout from './layout';
 import './main.scss';
 
 function App() {
   return (
-    <>
-      <h1>React App</h1>
-      <Hello />
-    </>
+    <Layout>
+      <Task />
+    </Layout>
   );
 }
+
 export default App;

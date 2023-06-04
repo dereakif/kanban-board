@@ -6,7 +6,16 @@
   box-sizing: border-box;
 }
 
+ul,
+ol {
+  list-style: none;
+}
+
+body,
+#root {
+  min-height: 100vh;
+}
+
 body {
   font-family: Inter, sans-serif;
-  min-height: 100vh;
 }
