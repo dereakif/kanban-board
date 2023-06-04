@@ -1,0 +1,6 @@
+@use '../../../styles/variables' as v;
+
+.task-layout {
+  background-color: v.$background;
+  height: 100vh;
+}
