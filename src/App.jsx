@@ -1,4 +1,4 @@
-import Hello from 'Components/hello';
+import Hello from 'Components/Hello';
 import './main.scss';
 
 function App() {
