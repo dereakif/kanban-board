@@ -3,4 +3,43 @@
 .task-layout {
   background-color: v.$background;
   height: 100vh;
+  &__sprint-info {
+    margin: 20px 24px;
+    display: flex;
+    align-items: center;
+    &__arrow {
+      margin-right: 24px;
+    }
+    &___sprint-name {
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 16px;
+      font-feature-settings: 'liga' off;
+      margin-right: 12px;
+    }
+    button {
+      margin-left: 24px;
+    }
+    &__view-mode {
+      margin-left: auto;
+      display: flex;
+      > div {
+        margin-left: 8px;
+      }
+    }
+  }
+  hr {
+    border-color: v.$border;
+  }
+  &__content {
+    display: flex;
+    height: calc(100vh - 144px);
+  }
+}
+
+.calendar {
+  margin-left: 12px;
+}
+.team {
+  margin-left: 16px;
 }

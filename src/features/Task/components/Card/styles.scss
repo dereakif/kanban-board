@@ -1,0 +1,45 @@
+.card {
+  border: 1px solid rgba(0, 23, 71, 0.05);
+  border-radius: 4px;
+  margin-bottom: 12px;
+  &__header {
+    margin: 12px;
+  }
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 12px;
+    margin-bottom: 8px;
+    &__left {
+      display: flex;
+      align-items: center;
+      div:first-of-type {
+        margin-right: 4px;
+      }
+      &__card-name {
+        font-weight: 300;
+        font-size: 13px;
+        line-height: 24px;
+      }
+    }
+    &__right {
+      display: flex;
+      align-items: center;
+      &__story-points {
+        border: 1px solid rgba(0, 23, 71, 0.05);
+        border-radius: 4px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+      }
+      span {
+        margin-left: 12px;
+      }
+    }
+  }
+}
