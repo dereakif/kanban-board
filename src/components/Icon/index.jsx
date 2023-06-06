@@ -6,9 +6,9 @@ const types = {
   icon: 'icon',
 };
 
-const Icon = ({ text, type, color = '', size = 'small', border = '' }) => {
+const Icon = ({ onClick, text, type, color = '', size = 'small', border = '' }) => {
   return (
-    <div className={`icon ${color} ${type} ${size} ${border}`}>
+    <div {...(onClick && { onClick })} className={`icon ${color} ${type} ${size} ${border}`}>
       {type === types.letter ? text[0] : null}
       {type === types.icon ? <img src={require(`../../assets/${text}.svg`)} alt='icon' /> : null}
     </div>
@@ -16,6 +16,7 @@ const Icon = ({ text, type, color = '', size = 'small', border = '' }) => {
 };
 
 Icon.propTypes = {
+  onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
   color: PropTypes.string,
   type: PropTypes.string.isRequired,

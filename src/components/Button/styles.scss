@@ -9,9 +9,21 @@
   line-height: 16px;
   letter-spacing: 0.02em;
   font-feature-settings: 'liga' off;
+  cursor: pointer;
 }
 
 .button.primary {
   background-color: v.$blue-light;
   color: v.$blue;
+}
+
+.button.secondary {
+  background-color: v.$orange;
+  color: #fff;
+}
+
+.button:disabled {
+  background-color: v.$background;
+  color: v.$text-lighter;
+  cursor: not-allowed;
 }
