@@ -1,4 +1,7 @@
 .card {
+  background-color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: grab;
   border: 1px solid rgba(0, 23, 71, 0.05);
   border-radius: 4px;
   margin-bottom: 12px;
@@ -42,4 +45,10 @@
       }
     }
   }
+}
+
+.card.dragging {
+  opacity: 0.7;
+  cursor: grabbing;
+  transform: scale(0.9);
 }

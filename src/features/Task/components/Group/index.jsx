@@ -1,10 +1,48 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Icon from '../../../../components/Icon';
+import { moveTask } from '../../slice/taskSlice';
 import './styles.scss';
 
-const Group = ({ children, title, icon, storyPoints }) => {
+const handleDragOver = (event) => {
+  event.preventDefault();
+};
+
+const handleDragLeave = (event) => {
+  event.currentTarget.classList.remove('drop-zone');
+};
+
+const handleDragEnter = (event) => {
+  event.currentTarget.classList.add('drop-zone');
+};
+
+const Group = ({ children, title, icon, storyPoints, groupCode }) => {
+  const dispatch = useDispatch();
+
+  const handleDrop = (event) => {
+    const data = event.dataTransfer.getData('text/plain');
+    const { cardId, currentColumn } = JSON.parse(data);
+    const targetColumn = groupCode;
+
+    currentColumn !== targetColumn &&
+      dispatch(
+        moveTask({
+          cardId,
+          targetColumn,
+        }),
+      );
+    event.currentTarget.classList.remove('drop-zone');
+  };
+
   return (
-    <div className='group'>
+    <div
+      className='group'
+      data-column={title}
+      onDragOver={handleDragOver}
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
       <div className='group__header'>
         <Icon text={icon} type='icon' size='small' />
         <span className='group__header__title'>{title}</span>
@@ -16,6 +54,7 @@ const Group = ({ children, title, icon, storyPoints }) => {
 };
 
 Group.propTypes = {
+  groupCode: PropTypes.string.isRequired,
   storyPoints: PropTypes.number.isRequired,
   children: PropTypes.node.isRequired,
   title: PropTypes.string.isRequired,

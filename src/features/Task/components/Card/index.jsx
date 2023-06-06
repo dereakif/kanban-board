@@ -8,9 +8,17 @@ const priorityMap = {
   3: <img src={require('../../../../assets/high-priority.svg')} alt='chart-hight' />,
 };
 
-const Card = ({ type, description, cardNumber, storyPoint, priority, assignee }) => {
+const Card = ({ groupCode, id, type, description, cardNumber, storyPoint, priority, assignee }) => {
+  const handleDragStart = (event) => {
+    const data = {
+      cardId: id,
+      currentColumn: groupCode,
+    };
+    event.dataTransfer.setData('text/plain', JSON.stringify(data));
+  };
+
   return (
-    <div className='card'>
+    <div className='card' id={id} draggable onDragStart={handleDragStart}>
       <div className='card__header'>
         <div className='card__header__description line-clamp-2'>{description}</div>
       </div>
@@ -45,6 +53,8 @@ const Card = ({ type, description, cardNumber, storyPoint, priority, assignee })
 };
 
 Card.propTypes = {
+  groupCode: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   storyPoint: PropTypes.number.isRequired,
