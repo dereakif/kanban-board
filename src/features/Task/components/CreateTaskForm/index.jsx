@@ -42,7 +42,7 @@ const CreateTaskForm = ({ handleCloseModal }) => {
       createTask({
         ...formState,
         cardNumber: Math.floor(Math.random() * 100),
-        type: 'Task',
+        type: Math.random() > 0.5 ? 'Task' : 'Epic',
       }),
     );
     handleCloseModal();
