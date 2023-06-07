@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import Icon from '../../../../components/Icon';
+import { changeCardOrder } from '../../slice/taskSlice';
 import './styles.scss';
 
 const priorityMap = {
@@ -9,16 +11,43 @@ const priorityMap = {
 };
 
 const Card = ({ groupCode, id, type, description, cardNumber, storyPoint, priority, assignee }) => {
+  const dispatch = useDispatch();
+
   const handleDragStart = (event) => {
     const data = {
       cardId: id,
       currentColumn: groupCode,
     };
     event.dataTransfer.setData('text/plain', JSON.stringify(data));
+    event.currentTarget.classList.add('dragging');
+  };
+
+  const handleDragEnd = (event) => {
+    event.currentTarget.classList.remove('dragging');
+  };
+
+  const handleDrop = (event) => {
+    const data = event.dataTransfer.getData('text/plain');
+    const { cardId } = JSON.parse(data);
+
+    id !== cardId &&
+      dispatch(
+        changeCardOrder({
+          currentGroupCode: groupCode,
+          currentCardId: cardId,
+          targetCardId: id,
+        }),
+      );
   };
 
   return (
-    <div className='card' id={id} draggable onDragStart={handleDragStart}>
+    <div
+      className='card'
+      draggable
+      onDrop={handleDrop}
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
       <div className='card__header'>
         <div className='card__header__description line-clamp-2'>{description}</div>
       </div>
