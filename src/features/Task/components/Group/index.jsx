@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import Icon from '../../../../components/Icon';
-import { moveTask } from '../../slice/taskSlice';
+import { moveCard } from '../../slice/taskSlice';
 import './styles.scss';
 
 const handleDragOver = (event) => {
@@ -26,9 +26,9 @@ const Group = ({ children, title, icon, storyPoints, groupCode }) => {
 
     currentColumn !== targetColumn &&
       dispatch(
-        moveTask({
+        moveCard({
           cardId,
-          targetColumn,
+          targetGroupCode: targetColumn,
         }),
       );
     event.currentTarget.classList.remove('drop-zone');
