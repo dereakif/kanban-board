@@ -1,8 +1,19 @@
 import { v4 as uuidv4 } from 'uuid';
 
+const groupMap = {
+  DONE: 'done',
+  TODO: 'todo',
+};
+
+const groupMapReverse = {
+  DONE: 'todo',
+  TODO: 'done',
+};
+
 export const reducers = {
   createTask: (state, action) => {
-    const { cardNumber, type, description, storyPoint, priority, assignee } = action.payload;
+    const { cardNumber, type, description, storyPoint, priority, assignee, destinationGroupCode } =
+      action.payload;
     const task = {
       id: uuidv4(),
       cardNumber,
@@ -13,19 +24,31 @@ export const reducers = {
       assignee,
     };
 
-    state.todo.push(task);
+    const destinationGroup = groupMap[destinationGroupCode];
+    state[destinationGroup].push(task);
   },
-  moveTask: (state, action) => {
-    const { targetColumn, cardId } = action.payload;
+  moveCard: (state, action) => {
+    const { targetGroupCode, cardId } = action.payload;
 
-    if (targetColumn === 'TODO') {
-      const task = state.done.find((task) => task.id === cardId);
-      state.done = state.done.filter((task) => task.id !== cardId);
-      state.todo.push(task);
-    } else {
-      const task = state.todo.find((task) => task.id === cardId);
-      state.todo = state.todo.filter((task) => task.id !== cardId);
-      state.done.push(task);
-    }
+    const currentGroup = groupMapReverse[targetGroupCode];
+    const targetGroup = groupMap[targetGroupCode];
+
+    const card = state[currentGroup].find((task) => task.id === cardId);
+
+    state[currentGroup] = state[currentGroup].filter((task) => task.id !== cardId);
+    state[targetGroup].push(card);
+  },
+  changeCardOrder: (state, action) => {
+    const { currentCardId, targetCardId, currentGroupCode } = action.payload;
+    const currentGroup = groupMap[currentGroupCode];
+
+    const currentCardIndex = state[currentGroup].findIndex((task) => task.id === currentCardId);
+    const targetCardIndex = state[currentGroup].findIndex((task) => task.id === targetCardId);
+
+    state[currentGroup].splice(
+      targetCardIndex,
+      0,
+      state[currentGroup].splice(currentCardIndex, 1)[0],
+    );
   },
 };
