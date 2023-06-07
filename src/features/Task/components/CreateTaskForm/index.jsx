@@ -23,6 +23,7 @@ const priorities = [
   },
 ];
 const storyPoints = [1, 2, 3, 5, 8, 13, 21, 34];
+
 const CreateTaskForm = ({ handleCloseModal }) => {
   const dispatch = useDispatch();
   const [formState, setFormState] = useState({
@@ -30,6 +31,7 @@ const CreateTaskForm = ({ handleCloseModal }) => {
     assignee: 'user1',
     priority: 1,
     storyPoint: 1,
+    destinationGroupCode: 'TODO',
   });
 
   const isValid = formState.description.trim() !== '' && formState.description[0] !== ' ';
@@ -46,19 +48,29 @@ const CreateTaskForm = ({ handleCloseModal }) => {
     handleCloseModal();
   };
 
-  const handleChange = (e) => {
+  const handleDescriptionChange = (e) => {
     setFormState({ ...formState, description: e.target.value });
   };
+
+  const handleGroupChange = (e) => {
+    setFormState({ ...formState, destinationGroupCode: e.target.value });
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className='form__header'>
         <div className='form__header__title'>Create new task</div>
       </div>
       <div className='form__body'>
+        <div className='form__body__title'>Status:</div>
+        <select onChange={handleGroupChange}>
+          <option value='TODO'>To Do</option>
+          <option value='DONE'>Done</option>
+        </select>
         <div className='form__body__title'>Description*:</div>
         <textarea
           value={formState.description}
-          onChange={handleChange}
+          onChange={handleDescriptionChange}
           className='form__body__textarea'
           placeholder='Enter description'
         />
